@@ -26,8 +26,12 @@ class Data(BaseModel):
     start_at: str = FieldInfo(alias="startAt")
     """a string to be decoded into a Date"""
 
+    start_range_type: Literal["date", "datetime"] = FieldInfo(alias="startRangeType")
+
     end_at: str = FieldInfo(alias="endAt")
     """a string to be decoded into a Date"""
+
+    end_range_type: Literal["date", "datetime"] = FieldInfo(alias="endRangeType")
 
     reason: Optional[str] = None
 
