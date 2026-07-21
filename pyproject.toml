@@ -1,6 +1,6 @@
 [project]
 name = "warp"
-version = "0.1.0" # x-release-please-version
+version = "0.2.0" # x-release-please-version
 description = "Warp Python client."
 license = "Apache-2.0"
 requires-python = ">= 3.9"
