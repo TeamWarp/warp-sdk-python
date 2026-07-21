@@ -12,6 +12,10 @@
       {
         "lang": "Python",
         "description": "```sh\npip install warp\n```"
+      },
+      {
+        "lang": "Go",
+        "description": "```sh\ngo get warp-go-sdk\n```"
       }
     ]
   },
@@ -3543,6 +3547,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\ndepartment = client.departments.list()\nprint(department)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tdepartment, err := client.Departments.List(context.Background(), sdk.DepartmentListParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(department)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp departments list --api-key \"$WARP_API_KEY\""
           }
         ]
       },
@@ -3703,6 +3717,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\ndepartment = client.departments.create(\n    name=\"\",\n)\nprint(department)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tdepartment, err := client.Departments.New(context.Background(), sdk.DepartmentNewParams{\n\t\tName: sdk.F[string](\"\"),\n\t})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(department)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp departments create --api-key \"$WARP_API_KEY\" --name 'name'"
           }
         ]
       }
@@ -3888,6 +3912,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\ndepartment = client.departments.update(\n    id=\"dpt_1234\",\n)\nprint(department)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tdepartment, err := client.Departments.Update(context.Background(), \"dpt_1234\", sdk.DepartmentUpdateParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(department)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp departments update 'dpt_1234' --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -10628,6 +10662,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\npolicy = client.time_off.policies.list()\nprint(policy)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tpolicy, err := client.TimeOff.Policies.List(context.Background(), sdk.TimeOffPolicyListParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(policy)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp time-off:policies list --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -10875,6 +10919,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\npolicy = client.time_off.policies.retrieve(\n    id=\"top_1234\",\n)\nprint(policy)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tpolicy, err := client.TimeOff.Policies.Get(context.Background(), \"top_1234\")\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(policy)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp time-off:policies retrieve 'top_1234' --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -11096,6 +11150,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\ntime_off = client.time_off.list_assignments()\nprint(time_off)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\ttimeOff, err := client.TimeOff.ListAssignments(context.Background(), sdk.TimeOffListAssignmentsParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(timeOff)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp time-off list-assignments --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -11353,6 +11417,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\ntime_off = client.time_off.list_balances()\nprint(time_off)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\ttimeOff, err := client.TimeOff.ListBalances(context.Background(), sdk.TimeOffListBalancesParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(timeOff)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp time-off list-balances --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -11695,6 +11769,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\ntime_off = client.time_off.list_requests()\nprint(time_off)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\ttimeOff, err := client.TimeOff.ListRequests(context.Background(), sdk.TimeOffListRequestsParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(timeOff)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp time-off list-requests --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -12125,6 +12209,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworker = client.workers.list()\nprint(worker)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworker, err := client.Workers.List(context.Background(), sdk.WorkerListParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(worker)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workers list --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -12475,6 +12569,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworker = client.workers.retrieve(\n    id=\"wrk_1234\",\n)\nprint(worker)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworker, err := client.Workers.Get(context.Background(), \"wrk_1234\")\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(worker)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workers retrieve 'wrk_1234' --api-key \"$WARP_API_KEY\""
           }
         ]
       },
@@ -12606,6 +12710,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nclient.workers.delete(\n    id=\"wrk_1234\",\n)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\terr := client.Workers.Delete(context.Background(), \"wrk_1234\")\n\tif err != nil {\n\t\tpanic(err)\n\t}\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workers delete 'wrk_1234' --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -13134,6 +13248,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworker = client.workers.create_employee(\n    first_name=\"\",\n    last_name=\"\",\n    position=\"\",\n    start_date=\"2000-01-01\",\n    email=\"john@joinwarp.com\",\n    department_id=\"dpt_1234\",\n    manager_id=\"wrk_1234\",\n    work_location={\"type\": \"office\", \"workplace_id\": \"wkp_1234\"},\n    compensation={\"amount\": 0, \"per\": \"hour\"},\n)\nprint(worker)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworker, err := client.Workers.NewEmployee(context.Background(), sdk.WorkerNewEmployeeParams{\n\t\tCompensation: sdk.F[sdk.WorkerNewEmployeeParamsCompensation](sdk.WorkerNewEmployeeParamsCompensation{\n\t\t\tAmount: sdk.F[float64](0),\n\t\t}),\n\t\tDepartmentID: sdk.F[string](\"dpt_1234\"),\n\t\tEmail: sdk.F[string](\"john@joinwarp.com\"),\n\t\tFirstName: sdk.F[string](\"\"),\n\t\tLastName: sdk.F[string](\"\"),\n\t\tManagerID: sdk.F[string](\"wrk_1234\"),\n\t\tPosition: sdk.F[string](\"\"),\n\t\tStartDate: sdk.F[string](\"2000-01-01\"),\n\t\tWorkLocation: sdk.F[sdk.WorkerNewEmployeeParamsWorkLocationUnion](sdk.WorkerNewEmployeeParamsWorkLocationOfficeWorkLocation{\n\t\t\tWorkplaceID: sdk.F[string](\"wkp_1234\"),\n\t\t}),\n\t})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(worker)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workers create-employee --api-key \"$WARP_API_KEY\" --first-name 'firstName' --last-name 'lastName' --position 'position' --start-date '2000-01-01' --email 'john@joinwarp.com' --department-id 'dpt_1234' --manager-id 'wrk_1234' --work-location '{\"type\":\"office\",\"workplaceId\":\"wkp_1234\"}' --compensation '{\"amount\":0,\"per\":\"hour\"}'"
           }
         ]
       }
@@ -13970,6 +14094,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworker = client.workers.create_contractor(\n    entity_type=\"individual\",\n    first_name=\"\",\n    last_name=\"\",\n    position=\"\",\n    start_date=\"2000-01-01\",\n    email=\"john@joinwarp.com\",\n    department_id=\"dpt_1234\",\n    manager_id=\"wrk_1234\",\n    work_country=\"AD\",\n)\nprint(worker)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworker, err := client.Workers.NewContractor(context.Background(), sdk.WorkerNewContractorParams{\n\t\tDepartmentID: sdk.F[string](\"dpt_1234\"),\n\t\tEmail: sdk.F[string](\"john@joinwarp.com\"),\n\t\tFirstName: sdk.F[string](\"\"),\n\t\tLastName: sdk.F[string](\"\"),\n\t\tManagerID: sdk.F[string](\"wrk_1234\"),\n\t\tPosition: sdk.F[string](\"\"),\n\t\tStartDate: sdk.F[string](\"2000-01-01\"),\n\t})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(worker)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workers create-contractor --api-key \"$WARP_API_KEY\" --entity-type 'individual' --first-name 'firstName' --last-name 'lastName' --position 'position' --start-date '2000-01-01' --email 'john@joinwarp.com' --department-id 'dpt_1234' --manager-id 'wrk_1234' --work-country 'AD'"
           }
         ]
       }
@@ -14340,6 +14474,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworker = client.workers.invite(\n    id=\"wrk_1234\",\n)\nprint(worker)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworker, err := client.Workers.Invite(context.Background(), \"wrk_1234\")\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(worker)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workers invite 'wrk_1234' --api-key \"$WARP_API_KEY\""
           }
         ]
       }
@@ -14650,6 +14794,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworkplace = client.workplaces.list()\nprint(workplace)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworkplace, err := client.Workplaces.List(context.Background(), sdk.WorkplaceListParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(workplace)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workplaces list --api-key \"$WARP_API_KEY\""
           }
         ]
       },
@@ -15038,6 +15192,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworkplace = client.workplaces.create(\n    name=\"\",\n    type=\"remote\",\n    address={\"line1\": \"x\", \"city\": \"\", \"postal_code\": \"\", \"state\": \"AL\", \"country\": \"US\"},\n)\nprint(workplace)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworkplace, err := client.Workplaces.New(context.Background(), sdk.WorkplaceNewParams{\n\t\tAddress: sdk.F[sdk.WorkplaceNewParamsAddress](sdk.WorkplaceNewParamsAddress{\n\t\t\tLine1: sdk.F[string](\"x\"),\n\t\t\tCity: sdk.F[string](\"\"),\n\t\t\tPostalCode: sdk.F[string](\"\"),\n\t\t}),\n\t\tName: sdk.F[string](\"\"),\n\t})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(workplace)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workplaces create --api-key \"$WARP_API_KEY\" --name 'name' --type 'remote' --address '{\"line1\":\"x\",\"city\":\"\",\"postalCode\":\"\",\"state\":\"AL\",\"country\":\"US\"}'"
           }
         ]
       }
@@ -15337,6 +15501,16 @@
             "lang": "Python",
             "label": "Python",
             "source": "import os\n\nfrom warp import Warp\n\nclient = Warp(\n    api_key=os.environ.get(\"WARP_API_KEY\"),\n)\n\nworkplace = client.workplaces.update(\n    id=\"wkp_1234\",\n)\nprint(workplace)"
+          },
+          {
+            "lang": "Go",
+            "label": "Go",
+            "source": "package main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"os\"\n\n\tsdk \"warp-go-sdk\"\n\t\"warp-go-sdk/option\"\n)\n\nfunc main() {\n\tclient := sdk.NewClient(\n\t\toption.WithAPIKey(os.Getenv(\"WARP_API_KEY\")),\n\t)\n\n\tworkplace, err := client.Workplaces.Update(context.Background(), \"wkp_1234\", sdk.WorkplaceUpdateParams{})\n\tif err != nil {\n\t\tpanic(err)\n\t}\n\tfmt.Println(workplace)\n}"
+          },
+          {
+            "lang": "Shell",
+            "label": "CLI",
+            "source": "warp workplaces update 'wkp_1234' --api-key \"$WARP_API_KEY\""
           }
         ]
       }
