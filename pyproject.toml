@@ -1,25 +1,34 @@
 [project]
-name = "warp"
+name = "warp-hr"
 version = "0.1.0" # x-release-please-version
-description = "Warp Python client."
+description = "warp Python client."
+readme = "README.md"
 license = "Apache-2.0"
+authors = [
+  { name = "Warp" },
+]
 requires-python = ">= 3.9"
 dependencies = [
   "httpx>=0.23.0, <1",
   "pydantic>=1.9.0, <3",
   "typing-extensions>=4.14, <5",
   "anyio>=3.5.0, <5",
-  "distro>=1.7.0, <2",
   "sniffio",
 ]
 
+[project.urls]
+Documentation = "https://docs.warp.co"
+
+[project.optional-dependencies]
+aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
+webhooks = []
 
 [build-system]
 requires = ["hatchling>=1.18.0"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src/warp_hr"]
 
-[tool.hatch.build.targets.wheel.sources]
-"src" = "warp"
+[tool.ruff]
+line-length = 120

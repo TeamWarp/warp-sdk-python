@@ -2,7 +2,7 @@
 
 This library provides convenient access to the Warp REST API from Python.
 
-The full API of this library can be found in [api.md](./api.md).
+The REST API documentation can be found on [docs.warp.co](https://docs.warp.co). The full API of this library can be found in [api.md](./api.md).
 
 <br />
 
@@ -16,6 +16,7 @@ The full API of this library can be found in [api.md](./api.md).
 - [Errors](#errors)
 - [Client Options](#client-options)
 - [Retries and Timeouts](#retries-and-timeouts)
+- [Webhooks](#webhooks)
 - [Helpers](#helpers)
 - [Logging](#logging)
 - [Requirements](#requirements)
@@ -25,7 +26,7 @@ The full API of this library can be found in [api.md](./api.md).
 ## Installation
 
 ```sh
-pip install warp
+pip install warp-hr
 ```
 
 <br />
@@ -35,14 +36,18 @@ pip install warp
 ```python
 import os
 
-from warp import Warp
+from warp_hr import Warp
 
 client = Warp(
     api_key=os.environ.get("WARP_API_KEY"),
 )
 
-time_off = client.time_off.list_assignments()
-print(time_off)
+health_plan = client.benefits.health_plans.list(
+    limit="limit",
+    statuses=["active"],
+)
+
+print(health_plan)
 ```
 
 The examples in the following sections assume a `client` configured as shown above.
@@ -58,11 +63,16 @@ Every client has an `Async` counterpart (`AsyncWarp`) exposing the same resource
 ```python
 import asyncio
 
-from warp import AsyncWarp
+from warp_hr import AsyncWarp
+
 
 async def main() -> None:
     client = AsyncWarp()
-    time_off = await client.time_off.list_assignments()
+    health_plan = await client.benefits.health_plans.list(
+        limit="limit",
+        statuses=["active"],
+    )
+
 
 asyncio.run(main())
 ```
@@ -75,7 +85,7 @@ Pass credentials to the generated client constructor. Environment variables are 
 
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `api_key` | `string \| provider` | - | Credential for the apiKey scheme. Defaults to WARP_API_KEY. |
+| `api_key` | `str \| None` | - | Credential for the apiKey scheme. Defaults to WARP_API_KEY. |
 
 Declared schemes:
 
@@ -88,16 +98,19 @@ Declared schemes:
 Non-success responses throw generated API errors. Error objects expose status, headers, response body, and request metadata where the target runtime supports it.
 
 ```python
-from warp import APIStatusError
+from warp_hr import APIStatusError
 
 try:
-    time_off = client.time_off.list_assignments()
+    health_plan = client.benefits.health_plans.list(
+        limit="limit",
+        statuses=["active"],
+    )
 except APIStatusError as err:
     print(err.status_code, err.message)
     raise
 ```
 
-Documented error statuses: `400`, `401`, `403`, `404`, `409`, `429`, `500`.
+Documented error statuses: `400`, `401`, `403`, `404`, `409`, `422`, `429`, `500`.
 
 <br />
 
@@ -106,7 +119,7 @@ Documented error statuses: `400`, `401`, `403`, `404`, `409`, `429`, `500`.
 Configure the generated client by setting any of these options when you create it.
 
 ```python
-from warp import Warp
+from warp_hr import Warp
 
 client = Warp(
     timeout=60.0,
@@ -131,6 +144,24 @@ Generated clients support request timeouts and retry temporary failures such as 
 
 <br />
 
+## Webhooks
+
+The webhook helper verifies the signature of each delivery your server receives, then decodes its body into a typed event. Pass it the request body exactly as it arrived, before any JSON parsing, together with the request headers: the signature covers the raw body, so one that was parsed and re-serialized fails verification. A delivery whose signature does not verify is rejected before it is decoded.
+
+```python
+# `payload` is the raw request body; `headers` holds the request headers.
+event = client.webhooks.unwrap(payload, headers=headers)
+```
+
+The signing secret comes from the client's `webhook_secret` option, which defaults to the `WARP_WEBHOOK_SECRET` environment variable. Pass `key` to use a different secret for one call.
+
+The same resource also has:
+
+- `client.webhooks.verify_signature(payload, headers)` checks a delivery's signature, and fails when it does not verify.
+- `client.webhooks.parse_unsafe(payload)` decodes a body into a typed event without checking its signature. Use it only for a body verified elsewhere, or in tests.
+
+<br />
+
 ## Helpers
 
 - Use `client.with_raw_response.<resource>.<method>(...)` to access the raw `httpx.Response` and parse it yourself.
@@ -141,12 +172,12 @@ Generated clients support request timeouts and retry temporary failures such as 
 ## Logging
 
 - Set the `WARP_LOG` environment variable to `info` or `debug` to enable HTTP logging.
-- Logs are emitted through the standard `logging` module under the `warp` logger.
+- Logs are emitted through the standard `logging` module under the `warp_hr` logger.
 
 <br />
 
 ## Requirements
 
-- Python 3.8 or newer
+- Python 3.9 or newer
 
 Powered by Scalar.
