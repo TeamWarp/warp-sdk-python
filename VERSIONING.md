@@ -25,8 +25,27 @@ Release PRs are opened by the Scalar platform from `scalar-next` against the def
 branch — so the PR diff shows the full pending release — and are versioned from
 [Conventional Commits](https://www.conventionalcommits.org). Merging a release PR tags the
 release, publishes it, and syncs the version bump and changelog back to `scalar-next`.
-Pre-1.0, breaking changes bump the minor version; to cut `1.0.0` (or any explicit
-version), push an empty commit with a `Release-As` footer to `scalar-next`:
+Pre-1.0, breaking changes bump the minor version.
+
+### Choosing an exact version
+
+To release a specific version — `1.0.0`, a hotfix number, anything the commit history would
+not have picked — **edit the release PR title** to the version you want:
+
+```text
+release: 1.0.0
+```
+
+The `Release PR version` check goes pending as soon as you save, because the version in the
+title no longer matches the version committed in the PR. The Scalar platform then re-renders
+the release PR at your version (changelog, manifest, and every version-bearing file), the
+title comes back as `release: 1.0.0`, and the check turns green. **Wait for it to be green
+before merging** — merging in between would tag a release whose own files still carry the
+old version. The check only turns red if the title is not a full semver version, or if the
+re-render has not arrived within 10 minutes.
+
+The git-native equivalent, if you would rather not touch the PR: push an empty commit with a
+`Release-As` footer to `scalar-next`. This is exactly what the title edit does for you.
 
 ```sh
 git commit --allow-empty -m "chore: release 1.0.0" -m "Release-As: 1.0.0"
@@ -55,12 +74,28 @@ different fixes:
   platform and the `github-actions` bot to push (or be left unprotected); the default
   branch only ever advances by merging release PRs, and `scalar-next` receives each
   released state back from the release workflow.
+- **`scalar-next` must not enable "Require linear history."** The Scalar platform merges each
+  regeneration into it, and merges a resolved conflict back the same way; the release sync
+  adds another merge whenever a release PR is squash- or rebase-merged. That setting rejects
+  all of them.
 - No Actions settings changes are required: the generated workflows declare their own
   permissions and never create pull requests.
 - If this package publishes through OIDC trusted publishing (for example PyPI or npm),
-  register the trusted publisher on the registry against the **`sdk-release.yml`**
-  workflow filename — not `release-please.yml`. Merging a release PR dispatches
-  `sdk-release.yml` at the released tag, so every publish path (automated, manual
-  re-publish, human-created release) runs it as a top-level workflow whose OIDC claims
-  name that file. If the publish job is configured with a deployment environment,
+  register the trusted publisher on the registry against the **`release-please.yml`**
+  workflow filename. Merging a release PR publishes from the `publish` job inside that
+  same workflow run (checked out at the released tag), so the automated path's OIDC
+  claims name that file — and, because nothing is dispatched, releasing works from any
+  release branch, not only the repository default branch. `sdk-release.yml` exists for
+  manual re-publishes at an existing tag; register it as an additional trusted publisher
+  only if you use it. If the publish job is configured with a deployment environment,
   include that environment in the registration too.
+
+### Recommended, not required
+
+Releases work without this; it closes a window where one can go out at the wrong version.
+
+- **If this repository uses auto-merge, make the `Release PR version` check a required status
+  check.** Auto-merge merges as soon as the checks that are *required* go green, with no
+  human present — so a check that is not required but still pending at that moment stops
+  nothing, which is exactly the window between retitling a release PR and the platform
+  re-rendering it.
