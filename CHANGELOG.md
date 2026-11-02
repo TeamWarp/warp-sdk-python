@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.5.0](https://github.com/TeamWarp/warp-sdk-python/compare/v0.4.0...v0.5.0) (2026-11-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Property `public_paycheck_earning.type` shape changed (`enum(hourly | salaried | overtime | …)`).
+
+### Features
+
+* **api:** update property public_paycheck_earning.type ([ddbf494](https://github.com/TeamWarp/warp-sdk-python/commit/ddbf494b4f229ff9f680b1fb754f241676c69e7a))
+
 ## [0.4.0](https://github.com/TeamWarp/warp-sdk-python/compare/v0.3.0...v0.4.0) (2026-10-31)
 
 
