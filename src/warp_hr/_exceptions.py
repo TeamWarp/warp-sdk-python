@@ -17,6 +17,7 @@ __all__ = [
     "InternalServerError",
     "APIWebhookValidationError",
     "WebhookVerificationError",
+    "WebhookMissingHeadersError",
     "WebSocketConnectionClosedError",
     "WebSocketQueueFullError",
 ]
@@ -73,6 +74,10 @@ else:
 
     class WebhookVerificationError(WarpError, _StandardWebhooksVerificationError):  # type: ignore
         """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+
+
+class WebhookMissingHeadersError(WebhookVerificationError, ValueError):
+    """Raised when a webhook delivery lacks a signed header; it is also a `ValueError`, so `except ValueError` handlers catch it."""
 
 
 class APIStatusError(APIError):

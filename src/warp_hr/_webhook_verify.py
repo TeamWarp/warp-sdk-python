@@ -8,7 +8,9 @@ messages, and like the library's `verify` it returns the JSON-decoded body once 
 refused delivery raises this package's `WebhookVerificationError`, which also subclasses the library's
 class of that name whenever the library is installed, so handlers written against it still catch it.
 An empty secret raises `ValueError` where the library raised `EmptyWebhookSecretError`; the generated
-webhook methods refuse such a key before calling in here.
+webhook methods refuse such a key before calling in here. A delivery without its signed headers raises
+`WebhookMissingHeadersError`, a `WebhookVerificationError` that is also a `ValueError`, so either
+`except` clause catches it.
 """
 
 from __future__ import annotations
@@ -21,7 +23,7 @@ from math import floor
 from typing import Mapping
 from datetime import datetime, timezone, timedelta
 
-from ._exceptions import WebhookVerificationError
+from ._exceptions import WebhookVerificationError, WebhookMissingHeadersError
 
 __all__ = ["verify_webhook_signature"]
 
@@ -78,7 +80,9 @@ def verify_webhook_signature(payload: str | bytes, headers: Mapping[str, str], k
     """Returns the JSON-decoded `payload` once it carries a valid, fresh signature made with `key`.
 
     A missing header, a timestamp outside the tolerance or no matching signature raises
-    `WebhookVerificationError`. Input the library also rejected with something else raises the same
+    `WebhookVerificationError`; for a missing header it is the `WebhookMissingHeadersError` subclass,
+    which is also a `ValueError`, saying `Could not find <name> header` for an absent one and
+    `Missing required headers` for an empty one. Input the library also rejected with something else raises the same
     `ValueError` it did: a signature entry that is not a `<version>,<signature>` pair, an undecodable
     signature, a `bytes` payload that is not UTF-8, or a signed body that is not JSON. An empty secret
     raises `ValueError` too, where the library raised `EmptyWebhookSecretError`.
@@ -90,11 +94,16 @@ def verify_webhook_signature(payload: str | bytes, headers: Mapping[str, str], k
     body = payload if isinstance(payload, str) else payload.decode()
 
     lowered = {name.lower(): value for name, value in headers.items()}
+    # An absent header is named, as `get_required_header` names it; one that is present but empty is
+    # refused below with the library's message.
+    for name in ("webhook-id", "webhook-timestamp", "webhook-signature"):
+        if lowered.get(name) is None:
+            raise WebhookMissingHeadersError(f"Could not find {name} header")
     msg_id = lowered.get("webhook-id")
     msg_timestamp = lowered.get("webhook-timestamp")
     msg_signature = lowered.get("webhook-signature")
     if not (msg_id and msg_timestamp and msg_signature):
-        raise WebhookVerificationError("Missing required headers")
+        raise WebhookMissingHeadersError("Missing required headers")
 
     timestamp = _parse_timestamp(msg_timestamp)
     # The signed content uses the whole seconds of the parsed timestamp, not the header text, so a
