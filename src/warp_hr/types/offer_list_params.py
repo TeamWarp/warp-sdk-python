@@ -22,7 +22,8 @@ class OfferListParams(TypedDict, total=False):
     statuses: Optional[List[Literal["draft", "sent", "accepted", "void", "expired"]]]
 
     worker_types: Annotated[
-        Optional[List[Literal["employee", "us_contractor", "global_contractor"]]], PropertyInfo(alias="workerTypes")
+        Optional[List[Literal["employee", "us_contractor", "global_contractor", "eor_employee"]]],
+        PropertyInfo(alias="workerTypes"),
     ]
 
     candidate_email: Annotated[Optional[str], PropertyInfo(alias="candidateEmail")]
