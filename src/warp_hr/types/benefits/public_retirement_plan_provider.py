@@ -4,4 +4,4 @@ from typing_extensions import Literal, TypeAlias
 
 __all__ = ["PublicRetirementPlanProvider"]
 
-PublicRetirementPlanProvider: TypeAlias = Literal["manual", "human_interest", "accrue"]
+PublicRetirementPlanProvider: TypeAlias = Literal["manual", "human_interest", "accrue", "paykonnect"]
