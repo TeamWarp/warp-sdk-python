@@ -17,6 +17,7 @@ __all__ = [
     "InternalServerError",
     "APIWebhookValidationError",
     "WebhookVerificationError",
+    "WebhookMissingHeadersError",
     "WebSocketConnectionClosedError",
     "WebSocketQueueFullError",
 ]
@@ -67,12 +68,16 @@ try:
 except ImportError:
 
     class WebhookVerificationError(WarpError):
-        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify, or its helper is signed with an algorithm this SDK cannot verify."""
 
 else:
 
     class WebhookVerificationError(WarpError, _StandardWebhooksVerificationError):  # type: ignore
-        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify, or its helper is signed with an algorithm this SDK cannot verify."""
+
+
+class WebhookMissingHeadersError(WebhookVerificationError, ValueError):
+    """Raised when a webhook delivery lacks a signed header; it is also a `ValueError`, so `except ValueError` handlers catch it."""
 
 
 class APIStatusError(APIError):

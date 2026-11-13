@@ -156,7 +156,7 @@ retirement_plan = client.benefits.retirement_plans.list(
 
 #### Create Retirement Plan
 
-Create a retirement plan for a company on the manual retirement channel.
+Create a retirement plan for a company on the manual or PayKonnect retirement channel.
 
 | Direction | Type |
 | --- | --- |
@@ -187,7 +187,7 @@ retirement_plan = client.benefits.retirement_plans.get(
 
 #### Update Retirement Plan
 
-Update a retirement plan for a company on the manual retirement channel.
+Update a retirement plan for a company on the manual or PayKonnect retirement channel.
 
 | Direction | Type |
 | --- | --- |
