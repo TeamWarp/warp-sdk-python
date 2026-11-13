@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.5.0](https://github.com/TeamWarp/warp-sdk-python/compare/v0.4.0...v0.5.0) (2026-11-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** Schema `public_retirement_plan_provider` shape changed.
+* **api:** `409` error response of `offers.resend` changed from `invalid_offer_status_error_encoded` to `application/json`.
+* **api:** Property `public_paycheck_earning.type` shape changed (`enum(hourly | salaried | overtime | …)`).
+
+### Features
+
+* **api:** update 409 error response on offers.resend (+6 more changes) ([ec54f5e](https://github.com/TeamWarp/warp-sdk-python/commit/ec54f5e15ffcd7794a745df5e26deb39ad3306ab))
+* **api:** update property public_paycheck_earning.type ([ddbf494](https://github.com/TeamWarp/warp-sdk-python/commit/ddbf494b4f229ff9f680b1fb754f241676c69e7a))
+* **api:** update schema public_retirement_plan_provider ([f468de7](https://github.com/TeamWarp/warp-sdk-python/commit/f468de70aa46d837060632db5f8c83b3af2cf660))
+
+
+### Chores
+
+* **api:** regenerate SDK ([65c9810](https://github.com/TeamWarp/warp-sdk-python/commit/65c9810f234ee357fcea9ce950f0c04e371e66cf))
+
 ## [0.4.0](https://github.com/TeamWarp/warp-sdk-python/compare/v0.3.0...v0.4.0) (2026-10-31)
 
 
