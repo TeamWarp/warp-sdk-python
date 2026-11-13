@@ -68,12 +68,12 @@ try:
 except ImportError:
 
     class WebhookVerificationError(WarpError):
-        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify, or its helper is signed with an algorithm this SDK cannot verify."""
 
 else:
 
     class WebhookVerificationError(WarpError, _StandardWebhooksVerificationError):  # type: ignore
-        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify, or its helper is signed with an algorithm this SDK cannot verify."""
 
 
 class WebhookMissingHeadersError(WebhookVerificationError, ValueError):
