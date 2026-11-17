@@ -32,6 +32,7 @@ class PublicHealthPlan(BaseModel):
         "accident",
         "critical_illness",
         "hospital",
+        "voluntary_life",
     ]
     """The health coverage type."""
 
