@@ -80,6 +80,7 @@ class DeductionsResource(SyncAPIResource):
                     "post_tax",
                     "other",
                     "voluntary_life",
+                    "miscellaneous",
                 ]
             ]
         ]
@@ -403,6 +404,7 @@ class AsyncDeductionsResource(AsyncAPIResource):
                     "post_tax",
                     "other",
                     "voluntary_life",
+                    "miscellaneous",
                 ]
             ]
         ]

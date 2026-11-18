@@ -61,6 +61,7 @@ class DeductionListParams(TypedDict, total=False):
                 "post_tax",
                 "other",
                 "voluntary_life",
+                "miscellaneous",
             ]
         ]
     ]

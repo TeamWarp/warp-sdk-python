@@ -58,6 +58,7 @@ class PublicPaycheckBenefit(BaseModel):
             "post_tax",
             "other",
             "voluntary_life",
+            "miscellaneous",
         ]
     ] = None
 
