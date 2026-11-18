@@ -44,7 +44,8 @@ class OffersResource(SyncAPIResource):
         after_id: Optional[str] | Omit = omit,
         before_id: Optional[str] | Omit = omit,
         statuses: Optional[List[Literal["draft", "sent", "accepted", "void", "expired"]]] | Omit = omit,
-        worker_types: Optional[List[Literal["employee", "us_contractor", "global_contractor"]]] | Omit = omit,
+        worker_types: Optional[List[Literal["employee", "us_contractor", "global_contractor", "eor_employee"]]]
+        | Omit = omit,
         candidate_email: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -334,7 +335,8 @@ class AsyncOffersResource(AsyncAPIResource):
         after_id: Optional[str] | Omit = omit,
         before_id: Optional[str] | Omit = omit,
         statuses: Optional[List[Literal["draft", "sent", "accepted", "void", "expired"]]] | Omit = omit,
-        worker_types: Optional[List[Literal["employee", "us_contractor", "global_contractor"]]] | Omit = omit,
+        worker_types: Optional[List[Literal["employee", "us_contractor", "global_contractor", "eor_employee"]]]
+        | Omit = omit,
         candidate_email: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

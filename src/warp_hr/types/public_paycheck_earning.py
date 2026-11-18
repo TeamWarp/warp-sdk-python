@@ -55,6 +55,7 @@ class PublicPaycheckEarning(BaseModel):
         "group_term_life",
         "other_imputed",
         "2_percent_shareholder_benefits",
+        "paycheck_tips",
     ]
 
     workplace_id: Optional[str] = FieldInfo(alias="workplaceId", default=None)

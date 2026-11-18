@@ -114,7 +114,7 @@ class RetirementPlansResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicRetirementPlan1:
         """
-        Create a retirement plan for a company on the manual retirement channel.
+        Create a retirement plan for a company on the manual or PayKonnect retirement channel.
 
         Args:
             type: Body parameter.
@@ -209,7 +209,7 @@ class RetirementPlansResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicRetirementPlan:
         """
-        Update a retirement plan for a company on the manual retirement channel.
+        Update a retirement plan for a company on the manual or PayKonnect retirement channel.
 
         Args:
             id: The tag of a company retirement plan.
@@ -337,7 +337,7 @@ class AsyncRetirementPlansResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicRetirementPlan1:
         """
-        Create a retirement plan for a company on the manual retirement channel.
+        Create a retirement plan for a company on the manual or PayKonnect retirement channel.
 
         Args:
             type: Body parameter.
@@ -432,7 +432,7 @@ class AsyncRetirementPlansResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicRetirementPlan:
         """
-        Update a retirement plan for a company on the manual retirement channel.
+        Update a retirement plan for a company on the manual or PayKonnect retirement channel.
 
         Args:
             id: The tag of a company retirement plan.

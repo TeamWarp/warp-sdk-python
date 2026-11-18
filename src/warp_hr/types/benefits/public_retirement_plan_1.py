@@ -26,7 +26,7 @@ class PublicRetirementPlan1(BaseModel):
     """The company-facing plan name."""
 
     provider: PublicRetirementPlanProvider
-    """The system administering the plan. Manual plans are administered by the company outside a connected provider."""
+    """The system administering the plan. Manual plans are administered by the company outside a connected provider. PayKonnect plans are kept in sync by PayKonnect."""
 
     effective_start_date: str = FieldInfo(alias="effectiveStartDate")
 

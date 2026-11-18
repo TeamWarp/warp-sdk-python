@@ -54,6 +54,8 @@ class HealthPlansResource(SyncAPIResource):
                     "accident",
                     "critical_illness",
                     "hospital",
+                    "voluntary_life",
+                    "miscellaneous",
                 ]
             ]
         ]
@@ -184,6 +186,8 @@ class AsyncHealthPlansResource(AsyncAPIResource):
                     "accident",
                     "critical_illness",
                     "hospital",
+                    "voluntary_life",
+                    "miscellaneous",
                 ]
             ]
         ]
