@@ -35,6 +35,7 @@ class HealthPlanListParams(TypedDict, total=False):
                 "critical_illness",
                 "hospital",
                 "voluntary_life",
+                "miscellaneous",
             ]
         ]
     ]
