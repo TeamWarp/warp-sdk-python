@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount1"]
 
 
 class PublicCurrencyMoneyAmount1(BaseModel):
-    """The provider-calculated amount to send for workers: gross pay plus reimbursements, less worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from recomputed totals because of provider and FX rounding. Null when any paycheck net pay is not yet known."""
+    """Amounts reimbursed to workers in addition to gross pay. Reimbursements increase net pay and employer cost."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

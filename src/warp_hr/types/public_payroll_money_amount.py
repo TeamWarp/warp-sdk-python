@@ -12,7 +12,7 @@ class Currency(BaseModel):
 
 
 class PublicPayrollMoneyAmount(BaseModel):
-    """The gross earnings attributed to this line in the amount's currency."""
+    """An amount in ISO currency minor units with a server-formatted display value."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount8"]
 
 
 class PublicCurrencyMoneyAmount8(BaseModel):
-    """Amounts the employer pays toward worker benefits in addition to gross pay."""
+    """Amounts reimbursed to the worker in addition to gross pay. Reimbursements increase net pay and employer cost."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

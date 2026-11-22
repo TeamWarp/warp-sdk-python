@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount12"]
 
 
 class PublicCurrencyMoneyAmount12(BaseModel):
-    """Calculated net pay after reimbursements, worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from the amount the worker ultimately receives. Null in both calculation and funding currencies until net pay is known in both."""
+    """Amounts the employer pays toward the worker's benefits in addition to gross pay."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""
