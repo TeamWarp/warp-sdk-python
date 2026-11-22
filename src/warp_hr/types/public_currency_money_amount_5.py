@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount5"]
 
 
 class PublicCurrencyMoneyAmount5(BaseModel):
-    """Non-benefit amounts deducted from worker pay before taxes, reducing taxable pay and net pay."""
+    """Amounts the employer pays toward worker benefits in addition to gross pay."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

@@ -7,9 +7,16 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 
 from .public_payroll_currency import PublicPayrollCurrency
-from .public_currency_money_amount_12 import PublicCurrencyMoneyAmount12
 
-__all__ = ["PublicPaycheckSummaryCurrencyTotals", "Currency"]
+__all__ = ["PublicPaycheckSummaryCurrencyTotals", "Currency", "NetPay"]
+
+
+class NetPay(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
 
 
 class Currency(BaseModel):
@@ -21,5 +28,5 @@ class PublicPaycheckSummaryCurrencyTotals(BaseModel):
 
     currency: Currency
 
-    net_pay: Optional[PublicCurrencyMoneyAmount12] = FieldInfo(alias="netPay", default=None)
+    net_pay: Optional[NetPay] = FieldInfo(alias="netPay", default=None)
     """Calculated net pay after reimbursements, worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from the amount the worker ultimately receives. Null in both calculation and funding currencies until net pay is known in both."""

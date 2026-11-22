@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount3"]
 
 
 class PublicCurrencyMoneyAmount3(BaseModel):
-    """Payroll taxes withheld from worker pay, reducing net pay."""
+    """Non-benefit amounts deducted from worker pay after taxes, reducing net pay."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

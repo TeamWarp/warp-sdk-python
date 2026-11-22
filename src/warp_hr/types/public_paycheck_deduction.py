@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 
 from .public_paycheck_deduction_tax_treatment import PublicPaycheckDeductionTaxTreatment
-from .public_payroll_money_amount_3 import PublicPayrollMoneyAmount3
+from .public_payroll_money_amount_2 import PublicPayrollMoneyAmount2
 
 __all__ = ["PublicPaycheckDeduction", "TaxTreatment"]
 
@@ -21,7 +21,7 @@ class PublicPaycheckDeduction(BaseModel):
 
     tax_treatment: TaxTreatment = FieldInfo(alias="taxTreatment")
 
-    amount: PublicPayrollMoneyAmount3
+    amount: PublicPayrollMoneyAmount2
     """The amount deducted from the worker's pay on this line in the amount's currency."""
 
     description: Optional[str] = None

@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount6"]
 
 
 class PublicCurrencyMoneyAmount6(BaseModel):
-    """Non-benefit amounts deducted from worker pay after taxes, reducing net pay."""
+    """Banking and transaction fees paid by the employer to fund and pay the payroll."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

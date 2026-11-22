@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount7"]
 
 
 class PublicCurrencyMoneyAmount7(BaseModel):
-    """Amounts workers pay toward benefits, deducted from their pay."""
+    """Gross earnings before worker taxes, deductions, and benefit contributions. Reimbursements are reported separately."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

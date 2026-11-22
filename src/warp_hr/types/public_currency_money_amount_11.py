@@ -6,7 +6,7 @@ __all__ = ["PublicCurrencyMoneyAmount11"]
 
 
 class PublicCurrencyMoneyAmount11(BaseModel):
-    """The provider-reported amount the employer must fund for the payroll, when available."""
+    """Amounts the worker pays toward benefits, deducted from their pay."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""

@@ -36,6 +36,6 @@ class PublicPaycheckTax(BaseModel):
     payer: Payer
 
     amount: Amount
-    """The tax amount attributed to the party identified by payer, expressed in the amount's currency."""
+    """The tax amount attributed to the party identified by payer, expressed in the amount's currency. A negative amount is a tax refund on a correction."""
 
     description: Optional[str] = None

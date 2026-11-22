@@ -12,7 +12,7 @@ class Currency(BaseModel):
 
 
 class PublicPayrollMoneyAmount2(BaseModel):
-    """The amount reimbursed to the worker on this paycheck in the amount's currency. It may differ from the currency of the original expense."""
+    """The amount deducted from the worker's pay on this line in the amount's currency."""
 
     amount: int
     """minor units — cents, e.g. 2345 for $23.45"""
