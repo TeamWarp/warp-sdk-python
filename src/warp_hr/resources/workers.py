@@ -54,6 +54,7 @@ class WorkersResource(SyncAPIResource):
         last_name: str | Omit = omit,
         preferred_name: Optional[str] | Omit = omit,
         t_shirt_size: Optional[Literal["XS", "S", "M", "L", "XL", "XXL", "XXXL"]] | Omit = omit,
+        dietary_restrictions: worker_update_params.DietaryRestrictions | Omit = omit,
         email: str | Omit = omit,
         work_email: Optional[str] | Omit = omit,
         phone: str | Omit = omit,
@@ -85,6 +86,7 @@ class WorkersResource(SyncAPIResource):
             last_name: Body parameter.
             preferred_name: Body parameter.
             t_shirt_size: Body parameter.
+            dietary_restrictions: Body parameter.
             email: An email with a reasonably valid regex (based on RFC 5321 atext characters)
             work_email: An email with a reasonably valid regex (based on RFC 5321 atext characters)
             phone: Body parameter.
@@ -125,6 +127,7 @@ class WorkersResource(SyncAPIResource):
                     "last_name": last_name,
                     "preferred_name": preferred_name,
                     "t_shirt_size": t_shirt_size,
+                    "dietary_restrictions": dietary_restrictions,
                     "email": email,
                     "work_email": work_email,
                     "phone": phone,
@@ -841,6 +844,7 @@ class AsyncWorkersResource(AsyncAPIResource):
         last_name: str | Omit = omit,
         preferred_name: Optional[str] | Omit = omit,
         t_shirt_size: Optional[Literal["XS", "S", "M", "L", "XL", "XXL", "XXXL"]] | Omit = omit,
+        dietary_restrictions: worker_update_params.DietaryRestrictions | Omit = omit,
         email: str | Omit = omit,
         work_email: Optional[str] | Omit = omit,
         phone: str | Omit = omit,
@@ -872,6 +876,7 @@ class AsyncWorkersResource(AsyncAPIResource):
             last_name: Body parameter.
             preferred_name: Body parameter.
             t_shirt_size: Body parameter.
+            dietary_restrictions: Body parameter.
             email: An email with a reasonably valid regex (based on RFC 5321 atext characters)
             work_email: An email with a reasonably valid regex (based on RFC 5321 atext characters)
             phone: Body parameter.
@@ -912,6 +917,7 @@ class AsyncWorkersResource(AsyncAPIResource):
                     "last_name": last_name,
                     "preferred_name": preferred_name,
                     "t_shirt_size": t_shirt_size,
+                    "dietary_restrictions": dietary_restrictions,
                     "email": email,
                     "work_email": work_email,
                     "phone": phone,
