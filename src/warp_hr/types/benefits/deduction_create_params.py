@@ -54,9 +54,10 @@ class DeductionCreateParams(TypedDict, total=False):
             "medical_other",
             "nqdc",
             "nontaxable_fringe",
+            "retirement_loan_repayment",
         ]
     ]
-    """The payroll deduction type to create."""
+    """The payroll deduction type to create. Use retirement_loan_repayment when a worker repays a retirement plan loan, such as a 401(k) loan, through payroll."""
 
     plan: Optional[Plan]
     """A matching company plan, or null for a planless deduction."""

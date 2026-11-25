@@ -81,6 +81,7 @@ class DeductionsResource(SyncAPIResource):
                     "other",
                     "voluntary_life",
                     "miscellaneous",
+                    "retirement_loan_repayment",
                 ]
             ]
         ]
@@ -180,6 +181,7 @@ class DeductionsResource(SyncAPIResource):
             "medical_other",
             "nqdc",
             "nontaxable_fringe",
+            "retirement_loan_repayment",
         ],
         plan: Optional[deduction_create_params.Plan] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -199,7 +201,7 @@ class DeductionsResource(SyncAPIResource):
 
         Args:
             worker_id: The id of the worker.
-            type: The payroll deduction type to create.
+            type: The payroll deduction type to create. Use retirement_loan_repayment when a worker repays a retirement plan loan, such as a 401(k) loan, through payroll.
             plan: A matching company plan, or null for a planless deduction.
             name: Body parameter.
             calculation: Both contributions must be supplied.
@@ -405,6 +407,7 @@ class AsyncDeductionsResource(AsyncAPIResource):
                     "other",
                     "voluntary_life",
                     "miscellaneous",
+                    "retirement_loan_repayment",
                 ]
             ]
         ]
@@ -504,6 +507,7 @@ class AsyncDeductionsResource(AsyncAPIResource):
             "medical_other",
             "nqdc",
             "nontaxable_fringe",
+            "retirement_loan_repayment",
         ],
         plan: Optional[deduction_create_params.Plan] | Omit = omit,
         name: Optional[str] | Omit = omit,
@@ -523,7 +527,7 @@ class AsyncDeductionsResource(AsyncAPIResource):
 
         Args:
             worker_id: The id of the worker.
-            type: The payroll deduction type to create.
+            type: The payroll deduction type to create. Use retirement_loan_repayment when a worker repays a retirement plan loan, such as a 401(k) loan, through payroll.
             plan: A matching company plan, or null for a planless deduction.
             name: Body parameter.
             calculation: Both contributions must be supplied.
