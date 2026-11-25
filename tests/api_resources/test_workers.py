@@ -21,6 +21,7 @@ class TestWorkers:
             last_name="x",
             preferred_name="",
             t_shirt_size="XS",
+            dietary_restrictions="vegetarian",
             email="john@joinwarp.com",
             work_email="john@joinwarp.com",
             phone="",

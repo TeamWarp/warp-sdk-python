@@ -21,6 +21,8 @@ class WorkerUpdateParams(TypedDict, total=False):
         Optional[Literal["XS", "S", "M", "L", "XL", "XXL", "XXXL"]], PropertyInfo(alias="tShirtSize")
     ]
 
+    dietary_restrictions: Annotated[object, PropertyInfo(alias="dietaryRestrictions")]
+
     email: str
     """An email with a reasonably valid regex (based on RFC 5321 atext characters)"""
 
