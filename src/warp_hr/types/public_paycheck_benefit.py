@@ -59,6 +59,7 @@ class PublicPaycheckBenefit(BaseModel):
             "other",
             "voluntary_life",
             "miscellaneous",
+            "retirement_loan_repayment",
         ]
     ] = None
 

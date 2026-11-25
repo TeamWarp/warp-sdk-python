@@ -62,6 +62,7 @@ class DeductionListParams(TypedDict, total=False):
                 "other",
                 "voluntary_life",
                 "miscellaneous",
+                "retirement_loan_repayment",
             ]
         ]
     ]
