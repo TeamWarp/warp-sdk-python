@@ -1,6 +1,6 @@
 [project]
 name = "warp-hr"
-version = "0.1.0" # x-release-please-version
+version = "0.5.0" # x-release-please-version
 description = "Warp Public API - API for accessing your organization's data on Warp."
 readme = "README.md"
 license = "Apache-2.0"
