@@ -30,6 +30,9 @@ __all__ = [
     "Totals",
     "TotalsInFundingCurrency",
     "TotalsInFundingCurrencyCurrency",
+    "TotalsInFundingCurrencyNetPay",
+    "TotalsInFundingCurrencyWorkerTaxes",
+    "TotalsInFundingCurrencyEmployerTaxes",
     "YearToDate",
     "YearToDateTotals",
     "YearToDateTotalsGrossPay",
@@ -170,6 +173,30 @@ class YearToDate(BaseModel):
     deductions: object
 
 
+class TotalsInFundingCurrencyEmployerTaxes(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
+class TotalsInFundingCurrencyWorkerTaxes(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
+class TotalsInFundingCurrencyNetPay(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
 class TotalsInFundingCurrencyCurrency(BaseModel):
     pass
 
@@ -180,16 +207,16 @@ class TotalsInFundingCurrency(BaseModel):
     gross_pay: object = FieldInfo(alias="grossPay")
     """Gross earnings before worker taxes, deductions, and benefit contributions. Reimbursements are reported separately."""
 
-    net_pay: Optional[object] = FieldInfo(alias="netPay", default=None)
+    net_pay: Optional[TotalsInFundingCurrencyNetPay] = FieldInfo(alias="netPay", default=None)
     """Calculated net pay after reimbursements, worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from the amount the worker ultimately receives. Null in both calculation and funding currencies until net pay is known in both."""
 
     reimbursements: object
     """Amounts reimbursed to the worker in addition to gross pay. Reimbursements increase net pay and employer cost."""
 
-    worker_taxes: object = FieldInfo(alias="workerTaxes")
+    worker_taxes: TotalsInFundingCurrencyWorkerTaxes = FieldInfo(alias="workerTaxes")
     """Payroll taxes withheld from the worker's pay, reducing net pay."""
 
-    employer_taxes: object = FieldInfo(alias="employerTaxes")
+    employer_taxes: TotalsInFundingCurrencyEmployerTaxes = FieldInfo(alias="employerTaxes")
     """Payroll taxes paid by the employer in addition to gross pay."""
 
     pre_tax_deductions: object = FieldInfo(alias="preTaxDeductions")

@@ -29,7 +29,16 @@ __all__ = [
     "Totals",
     "TotalsInFundingCurrency",
     "TotalsInFundingCurrencyCurrency",
+    "TotalsInFundingCurrencyNetPay",
 ]
+
+
+class TotalsInFundingCurrencyNetPay(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
 
 
 class TotalsInFundingCurrencyCurrency(BaseModel):
@@ -39,7 +48,7 @@ class TotalsInFundingCurrencyCurrency(BaseModel):
 class TotalsInFundingCurrency(BaseModel):
     currency: TotalsInFundingCurrencyCurrency
 
-    net_pay: Optional[object] = FieldInfo(alias="netPay", default=None)
+    net_pay: Optional[TotalsInFundingCurrencyNetPay] = FieldInfo(alias="netPay", default=None)
     """Calculated net pay after reimbursements, worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from the amount the worker ultimately receives. Null in both calculation and funding currencies until net pay is known in both."""
 
 

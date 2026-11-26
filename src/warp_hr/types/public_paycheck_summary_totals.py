@@ -10,7 +10,15 @@ from .._models import BaseModel
 
 from .public_paycheck_summary_currency_totals import PublicPaycheckSummaryCurrencyTotals
 
-__all__ = ["PublicPaycheckSummaryTotals", "InFundingCurrency", "InFundingCurrencyCurrency"]
+__all__ = ["PublicPaycheckSummaryTotals", "InFundingCurrency", "InFundingCurrencyCurrency", "InFundingCurrencyNetPay"]
+
+
+class InFundingCurrencyNetPay(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
 
 
 class InFundingCurrencyCurrency(BaseModel):
@@ -20,7 +28,7 @@ class InFundingCurrencyCurrency(BaseModel):
 class InFundingCurrency(BaseModel):
     currency: InFundingCurrencyCurrency
 
-    net_pay: Optional[object] = FieldInfo(alias="netPay", default=None)
+    net_pay: Optional[InFundingCurrencyNetPay] = FieldInfo(alias="netPay", default=None)
     """Calculated net pay after reimbursements, worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from the amount the worker ultimately receives. Null in both calculation and funding currencies until net pay is known in both."""
 
 

@@ -1,7 +1,7 @@
 [project]
 name = "warp-hr"
-version = "0.4.0" # x-release-please-version
-description = "warp Python client."
+version = "0.5.0" # x-release-please-version
+description = "Warp Public API - API for accessing your organization's data on Warp."
 readme = "README.md"
 license = "Apache-2.0"
 authors = [
@@ -18,10 +18,16 @@ dependencies = [
 
 [project.urls]
 Documentation = "https://docs.warp.co"
+Source = "https://github.com/TeamWarp/warp-sdk-python"
+Issues = "https://github.com/TeamWarp/warp-sdk-python/issues"
+Changelog = "https://github.com/TeamWarp/warp-sdk-python/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 aiohttp = ["aiohttp", "httpx_aiohttp>=0.1.9"]
 webhooks = []
+
+[dependency-groups]
+dev = ["pytest>=8.3.4"]
 
 [build-system]
 requires = ["hatchling>=1.18.0"]
@@ -32,3 +38,6 @@ packages = ["src/warp_hr"]
 
 [tool.ruff]
 line-length = 120
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

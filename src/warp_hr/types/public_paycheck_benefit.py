@@ -7,8 +7,8 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
+from .public_payroll_money_amount_3 import PublicPayrollMoneyAmount3
 from .public_payroll_money_amount_4 import PublicPayrollMoneyAmount4
-from .public_payroll_money_amount_5 import PublicPayrollMoneyAmount5
 
 __all__ = ["PublicPaycheckBenefit"]
 
@@ -57,11 +57,14 @@ class PublicPaycheckBenefit(BaseModel):
             "voluntary",
             "post_tax",
             "other",
+            "voluntary_life",
+            "miscellaneous",
+            "retirement_loan_repayment",
         ]
     ] = None
 
-    worker_contribution: PublicPayrollMoneyAmount4 = FieldInfo(alias="workerContribution")
+    worker_contribution: PublicPayrollMoneyAmount3 = FieldInfo(alias="workerContribution")
     """The amount the worker pays toward this benefit on the paycheck in the amount's currency."""
 
-    employer_contribution: PublicPayrollMoneyAmount5 = FieldInfo(alias="employerContribution")
+    employer_contribution: PublicPayrollMoneyAmount4 = FieldInfo(alias="employerContribution")
     """The amount the employer pays toward this benefit on the paycheck in the amount's currency."""

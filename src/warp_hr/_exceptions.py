@@ -17,6 +17,8 @@ __all__ = [
     "InternalServerError",
     "APIWebhookValidationError",
     "WebhookVerificationError",
+    "WebhookMissingHeadersError",
+    "EmptyWebhookSecretError",
     "WebSocketConnectionClosedError",
     "WebSocketQueueFullError",
 ]
@@ -67,12 +69,29 @@ try:
 except ImportError:
 
     class WebhookVerificationError(WarpError):
-        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify, or its helper is signed with an algorithm this SDK cannot verify."""
 
 else:
 
     class WebhookVerificationError(WarpError, _StandardWebhooksVerificationError):  # type: ignore
-        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify."""
+        """Raised when a webhook delivery's signature, timestamp or signed headers do not verify, or its helper is signed with an algorithm this SDK cannot verify."""
+
+
+class WebhookMissingHeadersError(WebhookVerificationError, ValueError):
+    """Raised when a webhook delivery lacks a signed header; it is also a `ValueError`, so `except ValueError` handlers catch it."""
+
+
+try:
+    from standardwebhooks.webhooks import EmptyWebhookSecretError as _StandardWebhooksEmptySecretError  # type: ignore
+except ImportError:
+
+    class EmptyWebhookSecretError(WarpError, ValueError):
+        """Raised when a webhook signing key decodes to nothing; it is also a `ValueError`, so `except ValueError` handlers catch it."""
+
+else:
+
+    class EmptyWebhookSecretError(WarpError, ValueError, _StandardWebhooksEmptySecretError):  # type: ignore
+        """Raised when a webhook signing key decodes to nothing; it is also a `ValueError`, so `except ValueError` handlers catch it."""
 
 
 class APIStatusError(APIError):

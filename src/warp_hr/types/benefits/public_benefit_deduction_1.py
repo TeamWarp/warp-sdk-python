@@ -64,6 +64,9 @@ class PublicBenefitDeduction1(BaseModel):
         "voluntary",
         "post_tax",
         "other",
+        "voluntary_life",
+        "miscellaneous",
+        "retirement_loan_repayment",
     ]
     """The specific payroll deduction type within the broader category."""
 

@@ -1,5 +1,107 @@
 # Changelog
 
+## [0.5.0](https://github.com/TeamWarp/warp-sdk-python/compare/v0.4.0...v0.5.0) (2026-11-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **api:** 30 breaking changes to the SDK surface.
+    - response-shape GET v1/workers→.data[].dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape GET v1/workers→.data[].dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape GET v1/workers/{p}→.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape GET v1/workers/{p}→.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape PATCH v1/workers/{p}→.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape PATCH v1/workers/{p}→.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape POST v1/workers/contractor→.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape POST v1/workers/contractor→.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape POST v1/workers/employee→.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape POST v1/workers/employee→.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape POST v1/workers/{p}/invite→.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape POST v1/workers/{p}/invite→.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerCreatedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerCreatedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerUpdatedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerUpdatedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerDeletedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerDeletedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerInviteSentWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerInviteSentWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerInviteAcceptedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerInviteAcceptedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerOnboardingCompletedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerOnboardingCompletedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerOffboardingStartedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerOffboardingStartedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerOffboardedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerOffboardedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerReactivatedWebhookEvent.data.dietaryRestrictions — required in after only (review: direction-dependent; read the hunk)
+    - response-shape webhooks.parseunsafe→|WorkerReactivatedWebhookEvent.data.dietaryRestrictions — optional wrapper only in before (review: direction-dependent; read the hunk)
+* **api:** 4 breaking changes to the SDK surface.
+    - enum-values GET v1/benefits/deductions→.data[].type — values differ — only after: [retirement_loan_repayment], only before: [—] (breaking: new enum value; breaks exhaustive switches and matches)
+    - enum-values GET v1/benefits/deductions.types[] — values differ — only after: [retirement_loan_repayment], only before: [—] (breaking: new enum value; breaks exhaustive switches and matches)
+    - enum-values POST v1/benefits/deductions→.type — values differ — only after: [retirement_loan_repayment], only before: [—] (breaking: new enum value; breaks exhaustive switches and matches)
+    - enum-values POST v1/benefits/deductions.type — values differ — only after: [retirement_loan_repayment], only before: [—] (breaking: new enum value; breaks exhaustive switches and matches)
+* **api:** 26 breaking changes to the SDK surface.
+    - types-files types/public_currency_money_amount_13.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_14.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_15.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_16.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_17.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_18.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_19.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_currency_money_amount_20.py — type file only in before (1 member: 0 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-files types/public_payroll_money_amount_5.py — type file only in before (2 members: 1 matched by name and kind elsewhere in after, 1 not found) (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount13 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount14 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount15 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount16 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount17 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount18 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount19 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicCurrencyMoneyAmount20 — reexport only in before (breaking: the new snapshot no longer has it)
+    - types-classes types/__init__.py:PublicPayrollMoneyAmount5 — reexport only in before (breaking: the new snapshot no longer has it)
+    - response-shape GET v1/paychecks/{p}→.totals.inFundingCurrency.netPay — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/paychecks/{p}→.totals.inFundingCurrency.workerTaxes — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/paychecks/{p}→.totals.inFundingCurrency.employerTaxes — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/payrolls/{p}→.totals.cashRequirement — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/payrolls/{p}→.totals.netPay — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/payrolls/{p}→.totals.workerTaxes — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/payrolls/{p}→.totals.employerTaxes — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+    - response-shape GET v1/payrolls/{p}→.totals.totalCost — untyped in before, typed in the other (review: direction-dependent; read the hunk)
+* **api:** enum-values GET v1/payrolls.subtypes[] — values differ — only after: [amendment, balancing], only before: [—] (breaking: new enum value; breaks exhaustive switches and matches)
+* **api:** 4 breaking changes to the SDK surface.
+    - Property `public_health_plan.type` shape changed (`enum(medical | dental | vision | …)`).
+    - Property `public_benefit_deduction.type` shape changed (`enum(medical | dental | vision | …)`).
+    - Property `public_benefit_deduction_1.type` shape changed (`enum(medical | dental | vision | …)`).
+    - Property `public_paycheck_benefit.type` shape changed (`enum(medical | dental | vision | …) | null`).
+* **api:** 4 breaking changes to the SDK surface.
+    - Property `public_health_plan.type` shape changed (`enum(medical | dental | vision | …)`).
+    - Property `public_benefit_deduction.type` shape changed (`enum(medical | dental | vision | …)`).
+    - Property `public_benefit_deduction_1.type` shape changed (`enum(medical | dental | vision | …)`).
+    - Property `public_paycheck_benefit.type` shape changed (`enum(medical | dental | vision | …) | null`).
+* **api:** Schema `public_retirement_plan_provider` shape changed.
+* **api:** `409` error response of `offers.resend` changed from `invalid_offer_status_error_encoded` to `application/json`.
+* **api:** Property `public_paycheck_earning.type` shape changed (`enum(hourly | salaried | overtime | …)`).
+
+### Features
+
+* **api:** update 409 error response on offers.resend (+6 more changes) ([ec54f5e](https://github.com/TeamWarp/warp-sdk-python/commit/ec54f5e15ffcd7794a745df5e26deb39ad3306ab))
+* **api:** update enum-values GET v1/payrolls.subtypes[] ([09ceca9](https://github.com/TeamWarp/warp-sdk-python/commit/09ceca97455ef67ea7cdcd71a02079bd0fb0fa8e))
+* **api:** update property public_health_plan.type (+3 more changes) ([0798746](https://github.com/TeamWarp/warp-sdk-python/commit/079874691c9002fa4c7ff18dabe8afbca44a2f59))
+* **api:** update property public_health_plan.type (+4 more changes) ([380e6aa](https://github.com/TeamWarp/warp-sdk-python/commit/380e6aa215798170fd9b17a4b3dc33e8768d8f43))
+* **api:** update property public_paycheck_earning.type ([ddbf494](https://github.com/TeamWarp/warp-sdk-python/commit/ddbf494b4f229ff9f680b1fb754f241676c69e7a))
+* **api:** update schema public_retirement_plan_provider ([f468de7](https://github.com/TeamWarp/warp-sdk-python/commit/f468de70aa46d837060632db5f8c83b3af2cf660))
+* **api:** update SDK surface (16 changes) ([30bd291](https://github.com/TeamWarp/warp-sdk-python/commit/30bd291292299bb8c41fc03d1577bfecf4831c93))
+* **api:** update SDK surface (30 changes) ([953a0b2](https://github.com/TeamWarp/warp-sdk-python/commit/953a0b2cba1943156f6ba190327f96f018d3572f))
+* **api:** update SDK surface (4 changes) ([810dc6c](https://github.com/TeamWarp/warp-sdk-python/commit/810dc6c6d2bb0db8c540dbe02c1c8e0c530b59aa))
+* **api:** update SDK surface (58 changes) ([0c4fb90](https://github.com/TeamWarp/warp-sdk-python/commit/0c4fb906ccfad6fe4057a8aa5155ef226662e581))
+
+
+### Chores
+
+* **api:** regenerate SDK ([2746a68](https://github.com/TeamWarp/warp-sdk-python/commit/2746a6868038ec06eeb59a7566f54f631cf6226d))
+* **api:** regenerate SDK ([65c9810](https://github.com/TeamWarp/warp-sdk-python/commit/65c9810f234ee357fcea9ce950f0c04e371e66cf))
+
 ## [0.4.0](https://github.com/TeamWarp/warp-sdk-python/compare/v0.3.0...v0.4.0) (2026-10-31)
 
 

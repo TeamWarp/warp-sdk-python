@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Scalar. See README.md for details.
 
+from __future__ import annotations
+
 from typing import Optional
 
 from pydantic import Field as FieldInfo
@@ -14,23 +16,67 @@ from .public_pay_period import PublicPayPeriod
 from .public_pay_frequency import PublicPayFrequency
 from .public_funding_payroll_totals import PublicFundingPayrollTotals
 
-__all__ = ["PublicPayrollSummary", "Type", "Subtype", "Status", "FundingCurrency", "PayPeriod", "Totals"]
+__all__ = [
+    "PublicPayrollSummary",
+    "Type",
+    "Subtype",
+    "Status",
+    "FundingCurrency",
+    "PayPeriod",
+    "Totals",
+    "TotalsNetPay",
+    "TotalsWorkerTaxes",
+    "TotalsEmployerTaxes",
+    "TotalsTotalCost",
+]
+
+
+class TotalsTotalCost(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
+class TotalsEmployerTaxes(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
+class TotalsWorkerTaxes(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
+class TotalsNetPay(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
 
 
 class Totals(BaseModel):
     gross_pay: object = FieldInfo(alias="grossPay")
     """Gross earnings before worker taxes, deductions, and benefit contributions. Reimbursements are reported separately."""
 
-    net_pay: Optional[object] = FieldInfo(alias="netPay", default=None)
+    net_pay: Optional[TotalsNetPay] = FieldInfo(alias="netPay", default=None)
     """The provider-calculated amount to send for workers: gross pay plus reimbursements, less worker taxes, deductions, and benefit contributions. It excludes payment execution fees and may differ from recomputed totals because of provider and FX rounding. Null when any paycheck net pay is not yet known."""
 
     reimbursements: object
     """Amounts reimbursed to workers in addition to gross pay. Reimbursements increase net pay and employer cost."""
 
-    worker_taxes: object = FieldInfo(alias="workerTaxes")
+    worker_taxes: TotalsWorkerTaxes = FieldInfo(alias="workerTaxes")
     """Payroll taxes withheld from worker pay, reducing net pay."""
 
-    employer_taxes: object = FieldInfo(alias="employerTaxes")
+    employer_taxes: TotalsEmployerTaxes = FieldInfo(alias="employerTaxes")
     """Payroll taxes paid by the employer in addition to gross pay."""
 
     pre_tax_deductions: object = FieldInfo(alias="preTaxDeductions")
@@ -48,7 +94,7 @@ class Totals(BaseModel):
     transaction_fees: object = FieldInfo(alias="transactionFees")
     """Banking and transaction fees paid by the employer to fund and pay the payroll."""
 
-    total_cost: object = FieldInfo(alias="totalCost")
+    total_cost: TotalsTotalCost = FieldInfo(alias="totalCost")
     """The employer's total payroll cost: gross pay, reimbursements, employer taxes, employer benefit contributions, and transaction fees."""
 
 

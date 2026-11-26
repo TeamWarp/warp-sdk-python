@@ -9,11 +9,18 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-from .public_payroll_money_amount import PublicPayrollMoneyAmount
 from .public_hourly_rate import PublicHourlyRate
-from .public_payroll_money_amount_1 import PublicPayrollMoneyAmount1
+from .public_payroll_currency import PublicPayrollCurrency
+from .public_payroll_money_amount import PublicPayrollMoneyAmount
 
-__all__ = ["PublicPaycheckEarning", "SourceRate", "SourceRateAmount", "SourceRateAmountCurrency"]
+__all__ = [
+    "PublicPaycheckEarning",
+    "Amount",
+    "AmountCurrency",
+    "SourceRate",
+    "SourceRateAmount",
+    "SourceRateAmountCurrency",
+]
 
 
 class SourceRateAmountCurrency(BaseModel):
@@ -36,6 +43,20 @@ class SourceRate(BaseModel):
     basis: Literal["yearly", "monthly", "weekly", "hourly"]
 
 
+class AmountCurrency(BaseModel):
+    pass
+
+
+class Amount(BaseModel):
+    amount: int
+    """minor units — cents, e.g. 2345 for $23.45"""
+
+    currency: AmountCurrency
+
+    display: str
+    """The server-formatted display string for the amount in its currency."""
+
+
 class PublicPaycheckEarning(BaseModel):
     """One earning calculation line. Lines have no durable public identity."""
 
@@ -55,13 +76,14 @@ class PublicPaycheckEarning(BaseModel):
         "group_term_life",
         "other_imputed",
         "2_percent_shareholder_benefits",
+        "paycheck_tips",
     ]
 
     workplace_id: Optional[str] = FieldInfo(alias="workplaceId", default=None)
     """Public workplace identifier"""
 
-    amount: PublicPayrollMoneyAmount
-    """The gross earnings attributed to this line in the amount's currency."""
+    amount: Amount
+    """The gross earnings attributed to this line in the amount's currency. A negative line is a clawback."""
 
     hours: Optional[float] = None
 
