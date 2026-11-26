@@ -105,29 +105,27 @@ class WorkerCreateContractorResponse(BaseModel):
     )
     """The worker's stored T-shirt size, or null when unset or unavailable."""
 
-    dietary_restrictions: Optional[
-        List[
-            Literal[
-                "vegetarian",
-                "vegan",
-                "pescatarian",
-                "halal",
-                "kosher",
-                "no_pork",
-                "no_beef",
-                "no_red_meat",
-                "gluten_free",
-                "dairy_free",
-                "low_carb",
-                "nut_allergy",
-                "shellfish_allergy",
-                "fish_allergy",
-                "egg_allergy",
-                "soy_allergy",
-                "sesame_allergy",
-            ]
+    dietary_restrictions: List[
+        Literal[
+            "vegetarian",
+            "vegan",
+            "pescatarian",
+            "halal",
+            "kosher",
+            "no_pork",
+            "no_beef",
+            "no_red_meat",
+            "gluten_free",
+            "dairy_free",
+            "low_carb",
+            "nut_allergy",
+            "shellfish_allergy",
+            "fish_allergy",
+            "egg_allergy",
+            "soy_allergy",
+            "sesame_allergy",
         ]
-    ] = FieldInfo(alias="dietaryRestrictions", default=None)
+    ] = FieldInfo(alias="dietaryRestrictions")
     """The worker's dietary restrictions. Empty when none are recorded."""
 
     department: Optional[Department] = None
